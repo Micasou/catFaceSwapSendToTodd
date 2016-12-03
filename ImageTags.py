@@ -1,6 +1,27 @@
 #run by using $python ImageTags.py <URL>
 from clarifai.rest import ClarifaiApp
 import sys
+import json
+import sys
+from sh import curl  # install `sh` with `pip install sh`
+
+def imgurHandle():
+    try:
+        resp = curl(
+            "https://api.imgur.com/3/image",
+            H="Authorization: Client-ID ca77119dcc8c6d8",  # Get your client ID from imgur.com
+            X="POST",
+            F='image=@%s' % sys.argv[1]
+        )
+        objresp = json.loads(resp.stdout)
+
+        #if objresp.get('success', False):
+            #print objresp['data']['link']
+        #else:
+            #print 'Error: ', objresp['data']['error']
+        return objresp['data']['link']
+    except Exception as e:
+        print 'Error: ', e
 
 def getWords(url):
     subDict = None
@@ -38,7 +59,11 @@ def getWords(url):
 
     print(" ".join(words))
 
-if(len(sys.argv) < 2):
-    getWords(sys.stdin.read())
+url = sys.argv[1]
+firstFive = url[0:4]
+
+if(firstFive != "http"):
+    getWords(imgurHandle())
+    #getWords(sys.stdin.read())
 else:
     getWords(sys.argv[1])
