@@ -3,6 +3,7 @@
 import sys
 import numpy as np
 import cv2
+import os
 
 # Read points from text file
 def readPoints(path) :
@@ -123,17 +124,21 @@ def warpTriangle(img1, img2, t1, t2) :
      
     img2[r2[1]:r2[1]+r2[3], r2[0]:r2[0]+r2[2]] = img2[r2[1]:r2[1]+r2[3], r2[0]:r2[0]+r2[2]] + img2Rect 
     
-def swap(src1, src2, src3):
+def swap(src1, src2):
     filename1 = src1
     filename2 = src2
     
     img1 = cv2.imread(filename1);
     img2 = cv2.imread(filename2);
     img1Warped = np.copy(img2);    
+    os.remove(filename1 + '.txt') #remove file 
+    os.remove(filename2 + '.txt')
     
+    open(filename1 + '.txt', 'a') #creates file
+    open(filename2 + '.txt', 'a')
     # Read array of corresponding points
     points1 = readPoints(filename1 + '.txt')
-    points2 = readPoints(src3 + '.txt')    
+    points2 = readPoints(filename2 + '.txt')    
     
     # Find convex hull
     hull1 = []
@@ -255,13 +260,13 @@ if __name__ == '__main__' :
     r = cv2.boundingRect(np.float32([hull2]))    
     
     center = ((r[0]+int(r[2]/2), r[1]+int(r[3]/2)))
-        
+     
     
     # Clone seamlessly.
     output = cv2.seamlessClone(np.uint8(img1Warped), img2, mask, center, cv2.NORMAL_CLONE)
     
     cv2.imshow("Facee Swapped", output)
-    swap(filename3,filename1,filename2)
+    #swap(filename3,filename1,filename2)
     cv2.waitKey(0)
     
     cv2.destroyAllWindows()
