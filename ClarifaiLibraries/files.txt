@@ -1,0 +1,4 @@
+/usr/local/lib/python2.7/site-packages/clarifai-2.0.14-py2.7.egg
+/usr/local/bin/clarifai
+/usr/local/bin/pasteurize
+/usr/local/bin/futurize
