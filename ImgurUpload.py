@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+#Run this by python imgur.py <local pathname> | python ImageTags.py  
 from sh import curl  # install `sh` with `pip install sh`
 import json
 import sys
