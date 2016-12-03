@@ -38,4 +38,7 @@ def getWords(url):
 
     print(" ".join(words))
 
-getWords(sys.argv[1])
+if(len(sys.argv) < 2):
+    getWords(sys.stdin.read())
+else:
+    getWords(sys.argv[1])
