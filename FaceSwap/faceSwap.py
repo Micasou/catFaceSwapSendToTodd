@@ -123,19 +123,9 @@ def warpTriangle(img1, img2, t1, t2) :
      
     img2[r2[1]:r2[1]+r2[3], r2[0]:r2[0]+r2[2]] = img2[r2[1]:r2[1]+r2[3], r2[0]:r2[0]+r2[2]] + img2Rect 
     
-
-if __name__ == '__main__' :
-    
-    # Make sure OpenCV is version 3.0 or above
-    (major_ver, minor_ver, subminor_ver) = (cv2.__version__).split('.')
-
-    if int(major_ver) < 3 :
-        print >>sys.stderr, 'ERROR: Script needs OpenCV 3.0 or higher'
-        sys.exit(1)
-
-    # Read images
-    filename1 = 'ted_cruz.jpg'
-    filename2 = 'donald_trump.jpg'
+def swap(src1, src2, src3):
+    filename1 = src1
+    filename2 = src2
     
     img1 = cv2.imread(filename1);
     img2 = cv2.imread(filename2);
@@ -143,7 +133,7 @@ if __name__ == '__main__' :
     
     # Read array of corresponding points
     points1 = readPoints(filename1 + '.txt')
-    points2 = readPoints(filename2 + '.txt')    
+    points2 = readPoints(src3 + '.txt')    
     
     # Find convex hull
     hull1 = []
@@ -196,7 +186,82 @@ if __name__ == '__main__' :
     output = cv2.seamlessClone(np.uint8(img1Warped), img2, mask, center, cv2.NORMAL_CLONE)
     
     cv2.imshow("Face Swapped", output)
+    
+if __name__ == '__main__' :
+    
+    # Make sure OpenCV is version 3.0 or above
+    (major_ver, minor_ver, subminor_ver) = (cv2.__version__).split('.')
+
+    if int(major_ver) < 3 :
+        print >>sys.stderr, 'ERROR: Script needs OpenCV 3.0 or higher'
+        sys.exit(1)
+
+    # Read images
+    filename3 = 'ted_cruz.jpg'
+    filename1 = 'testcat.jpg'
+    filename2 = 'donald_trump.jpg'
+    
+    img1 = cv2.imread(filename1);
+    img2 = cv2.imread(filename2);
+    img3 = cv2.imread(filename3);
+    img1Warped = np.copy(img2);    
+    
+    # Read array of corresponding points
+    points1 = readPoints(filename3 + '.txt')
+    points2 = readPoints(filename2 + '.txt')    
+    
+    # Find convex hull
+    hull1 = []
+    hull2 = []
+
+    hullIndex = cv2.convexHull(np.array(points2), returnPoints = False)
+          
+    for i in xrange(0, len(hullIndex)):
+        hull1.append(points1[hullIndex[i]])
+        hull2.append(points2[hullIndex[i]])
+    
+    
+    # Find delanauy traingulation for convex hull points
+    sizeImg2 = img2.shape    
+    rect = (0, 0, sizeImg2[1], sizeImg2[0])
+     
+    dt = calculateDelaunayTriangles(rect, hull2)
+    
+    if len(dt) == 0:
+        quit()
+    
+    # Apply affine transformation to Delaunay triangles
+    for i in xrange(0, len(dt)):
+        t1 = []
+        t2 = []
+        
+        #get points for img1, img2 corresponding to the triangles
+        for j in xrange(0, 3):
+            t1.append(hull1[dt[i][j]])
+            t2.append(hull2[dt[i][j]])
+        
+        warpTriangle(img1, img1Warped, t1, t2)
+    
+            
+    # Calculate Mask
+    hull8U = []
+    for i in xrange(0, len(hull2)):
+        hull8U.append((hull2[i][0], hull2[i][1]))
+    
+    mask = np.zeros(img2.shape, dtype = img2.dtype)  
+    
+    cv2.fillConvexPoly(mask, np.int32(hull8U), (255, 255, 255))
+    
+    r = cv2.boundingRect(np.float32([hull2]))    
+    
+    center = ((r[0]+int(r[2]/2), r[1]+int(r[3]/2)))
+        
+    
+    # Clone seamlessly.
+    output = cv2.seamlessClone(np.uint8(img1Warped), img2, mask, center, cv2.NORMAL_CLONE)
+    
+    cv2.imshow("Facee Swapped", output)
+    swap(filename3,filename1,filename2)
     cv2.waitKey(0)
     
     cv2.destroyAllWindows()
-        
