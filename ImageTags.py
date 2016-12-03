@@ -1,3 +1,4 @@
+#run by using $python ImageTags.py <URL>
 from clarifai.rest import ClarifaiApp
 import sys
 
