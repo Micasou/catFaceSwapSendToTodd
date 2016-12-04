@@ -250,7 +250,7 @@ def swap(src1, src2, pointSet1, pointSet2):
     cv2.imshow("Face Swapped" + filename1, output)
     
 if __name__ == '__main__' :
-    
+    print "hey"
     # Make sure OpenCV is version 3.0 or above
     (major_ver, minor_ver, subminor_ver) = (cv2.__version__).split('.')
     if int(major_ver) < 3 :
