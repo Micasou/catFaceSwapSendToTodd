@@ -4,8 +4,8 @@ import sys
 import numpy as np
 import cv2
 import operator
-from PIL import Image
-from PIL import ImageDraw
+#from PIL import Image
+#from PIL import ImageDraw
 
 def detectCatFace(imgPath):
     # load the input image and convert it to grayscale
@@ -41,12 +41,13 @@ def detectHumanFaceRect(imgPath):
     # load the input image and convert it to grayscale
     image =  cv2.imread(imgPath)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
- 
+
+    detector = cv2.CascadeClassifier("frontcat_extended.xml")
+    rects = detector.detectMultiScale(gray, scaleFactor=1.3,
+                                      minNeighbors=1, minSize=(5, 5))
     # load the cat detector Haar cascade, then detect cat faces
     # in the input image
     detector = cv2.CascadeClassifier("front_human_face.xml")
-    rects = detector.detectMultiScale(gray, scaleFactor=1.3,
-    	minNeighbors=1, minSize=(5, 5))
     # loop over the cat faces and draw a rectangle surrounding each
     aList = []
     for (i, (x, y, w, h)) in enumerate(rects):
