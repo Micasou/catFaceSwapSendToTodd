@@ -32,9 +32,38 @@ def detectCatFace(imgPath):
     		cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 0, 255), 2)
     print aList
     # show the detected cat faces
-    cv2.imshow("Cat Faces", image)
+    cv2.imshow("Cat Faces" + imgPath, image)
     return aList
+    
+def detectHumanFace(imgPath):
+    # load the input image and convert it to grayscale
+    image =  cv2.imread(imgPath)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
  
+    # load the cat detector Haar cascade, then detect cat faces
+    # in the input image
+    detector = cv2.CascadeClassifier("front_human_face.xml")
+    rects = detector.detectMultiScale(gray, scaleFactor=1.3,
+    	minNeighbors=1, minSize=(5, 5))
+    # loop over the cat faces and draw a rectangle surrounding each
+    aList = []
+    for (i, (x, y, w, h)) in enumerate(rects):
+        #temp = x +","+ y +","+ w + "," + h 
+        aList.append((x,y))
+        aList.append((x,y+h))
+        aList.append((x+w,y))
+        aList.append((x+w,y+h))
+        print x   #x point
+        print y     #y point
+        print h     #height form origin
+        print w     #width from origin
+        cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
+        cv2.putText(image, "human #{}".format(i + 1), (x, y - 10),
+    		cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 0, 255), 2)
+    print aList
+    # show the detected cat faces
+    cv2.imshow("Human Faces" + imgPath, image)
+    return aList
 # Read points from text file
 def readPoints(path) :
     # Create an array of points.
@@ -154,21 +183,17 @@ def warpTriangle(img1, img2, t1, t2) :
      
     img2[r2[1]:r2[1]+r2[3], r2[0]:r2[0]+r2[2]] = img2[r2[1]:r2[1]+r2[3], r2[0]:r2[0]+r2[2]] + img2Rect 
     
-def swap(src1, src2):
+def swap(src1, src2, pointSet1, pointSet2):
     filename1 = src1
     filename2 = src2
     
     img1 = cv2.imread(filename1);
     img2 = cv2.imread(filename2);
     img1Warped = np.copy(img2);    
-    os.remove(filename1 + '.txt') #remove file 
-    os.remove(filename2 + '.txt')
     
-    open(filename1 + '.txt', 'a') #creates file
-    open(filename2 + '.txt', 'a')
     # Read array of corresponding points
-    points1 = readPoints(filename1 + '.txt')
-    points2 = readPoints(filename2 + '.txt')    
+    points1 = pointSet1
+    points2 = pointSet2    
     
     # Find convex hull
     hull1 = []
@@ -227,12 +252,21 @@ if __name__ == '__main__' :
     # Make sure OpenCV is version 3.0 or above
     (major_ver, minor_ver, subminor_ver) = (cv2.__version__).split('.')
 
+  
+    
     if int(major_ver) < 3 :
         print >>sys.stderr, 'ERROR: Script needs OpenCV 3.0 or higher'
         sys.exit(1)
-
+    catFileName = "testcat5.jpg"
+    catFileName2 = "testcat2.jpg"
+    catbounds = detectCatFace(catFileName)
+    catbounds2 = detectCatFace(catFileName2)
+    swap(catFileName,catFileName2,catbounds,catbounds2)
+    print catbounds
     # Read images
     filename3 = 'ted_cruz.jpg'
+    catbounds2 = detectCatFace(filename3)
+    print catbounds2
     filename1 = 'testcat.jpg'
     filename2 = 'donald_trump.jpg'
     
