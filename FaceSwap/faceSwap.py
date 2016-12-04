@@ -1,5 +1,6 @@
 #! /usr/bin/env python
-
+#import ImageTags as tags
+#import ImgurUpload as upload
 import sys
 import numpy as np
 import cv2
@@ -8,6 +9,7 @@ import operator
 #from PIL import ImageDraw
 
 def detectCatFace(imgPath):
+    print "cat bpounds"
     # load the input image and convert it to grayscale
     image =  cv2.imread(imgPath)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -42,7 +44,7 @@ def detectHumanFaceRect(imgPath):
     image =  cv2.imread(imgPath)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    detector = cv2.CascadeClassifier("frontcat_extended.xml")
+    detector = cv2.CascadeClassifier("front_human_face.xml")
     rects = detector.detectMultiScale(gray, scaleFactor=1.3,
                                       minNeighbors=1, minSize=(5, 5))
     # load the cat detector Haar cascade, then detect cat faces
@@ -244,20 +246,25 @@ def swap(src1, src2, pointSet1, pointSet2):
     
     center = ((r[0]+int(r[2]/2), r[1]+int(r[3]/2)))
         
-    
+    #outFile = open("merge.jpg",'wb')
     # Clone seamlessly.
+    #cv2.imwrite("images/opencv-seamless-cloning-example.jpg", output)
     output = cv2.seamlessClone(np.uint8(img1Warped), img2, mask, center, cv2.NORMAL_CLONE)
-    
+    cv2.imwrite(filename1 + "example.jpg", output)
+
+   # outFile.write(output)
     cv2.imshow("Face Swapped" + filename1, output)
+
+
     
-if __name__ == '__main__' :
-    print "hey"
+def main():
     # Make sure OpenCV is version 3.0 or above
     (major_ver, minor_ver, subminor_ver) = (cv2.__version__).split('.')
     if int(major_ver) < 3 :
         print >>sys.stderr, 'ERROR: Script needs OpenCV 3.0 or higher'
         sys.exit(1)
     catFileName = "testcat5.jpg"
+    catFileNameOutter = "Cat0.jpg"
     catFileName2 = "testcat2.jpg"
     filename1 = 'testcat.jpg'
     filename2 = 'donald_trump.jpg'
@@ -265,13 +272,16 @@ if __name__ == '__main__' :
     todd = 'todd.jpg'
     
     catbounds = detectCatFace(catFileName)
+    othwerCatBounds = detectCatFace(catFileNameOutter)
     todbounds = detectHumanFaceRect(todd)
     humanbounds = detectHumanFaceRect(filename3)
     swap(catFileName,filename3,catbounds,humanbounds)
     swap(todd,catFileName,todbounds,catbounds)
-    swap(catFileName,todd,catbounds,todbounds)
+    #swap(todd,catFileName,todbounds,catbounds)
+    #swap(catFileName,todd,catbounds,todbounds)
     print catbounds
     print humanbounds
     #swap(filename3,filename1,filename2)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+

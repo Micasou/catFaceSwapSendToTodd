@@ -9,6 +9,7 @@ from kivy.uix.textinput import TextInput
 class Window(GridLayout):
 
     def send(instance, value):
+        face.main()
         print(instance.filePath.text + ' ' +instance.phoneNumber.text)
 
     def __init__(self, **kwargs):
