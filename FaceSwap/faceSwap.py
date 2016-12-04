@@ -14,7 +14,7 @@ def detectCatFace(imgPath):
     # in the input image
     detector = cv2.CascadeClassifier("frontcat_extended.xml")
     rects = detector.detectMultiScale(gray, scaleFactor=1.3,
-    	minNeighbors=10, minSize=(75, 75))
+    	minNeighbors=1, minSize=(5, 5))
     # loop over the cat faces and draw a rectangle surrounding each
     for (i, (x, y, w, h)) in enumerate(rects):
     	cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
