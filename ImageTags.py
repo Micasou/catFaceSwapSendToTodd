@@ -57,13 +57,13 @@ def getWords(url):
                     words.append('\n')
                 break
 
-    print(" ".join(words))
+    return(" ".join(words))
 
-url = sys.argv[1]
-firstFive = url[0:4]
-
-if(firstFive != "http"):
-    getWords(imgurHandle())
-    #getWords(sys.stdin.read())
-else:
-    getWords(sys.argv[1])
+# url = sys.argv[1]
+# firstFive = url[0:4]
+#
+# if(firstFive != "http"):
+#     getWords(imgurHandle())
+#     #getWords(sys.stdin.read())
+# else:
+#     getWords(sys.argv[1])
