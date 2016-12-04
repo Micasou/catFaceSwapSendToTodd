@@ -3,7 +3,9 @@
 import sys
 import numpy as np
 import cv2
-import os
+import operator
+from PIL import Image
+from PIL import ImageDraw
 
 def detectCatFace(imgPath):
     # load the input image and convert it to grayscale
@@ -32,10 +34,10 @@ def detectCatFace(imgPath):
     		cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 0, 255), 2)
     print aList
     # show the detected cat faces
-    cv2.imshow("Cat Faces" + imgPath, image)
+    #cv2.imshow("Cat Faces" + imgPath, image)
     return aList
     
-def detectHumanFace(imgPath):
+def detectHumanFaceRect(imgPath):
     # load the input image and convert it to grayscale
     image =  cv2.imread(imgPath)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -62,7 +64,7 @@ def detectHumanFace(imgPath):
     		cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 0, 255), 2)
     print aList
     # show the detected cat faces
-    cv2.imshow("Human Faces" + imgPath, image)
+    #cv2.imshow("Human Faces" + imgPath, image)
     return aList
 # Read points from text file
 def readPoints(path) :
@@ -245,92 +247,30 @@ def swap(src1, src2, pointSet1, pointSet2):
     # Clone seamlessly.
     output = cv2.seamlessClone(np.uint8(img1Warped), img2, mask, center, cv2.NORMAL_CLONE)
     
-    cv2.imshow("Face Swapped", output)
+    cv2.imshow("Face Swapped" + filename1, output)
     
 if __name__ == '__main__' :
     
     # Make sure OpenCV is version 3.0 or above
     (major_ver, minor_ver, subminor_ver) = (cv2.__version__).split('.')
-
-  
-    
     if int(major_ver) < 3 :
         print >>sys.stderr, 'ERROR: Script needs OpenCV 3.0 or higher'
         sys.exit(1)
     catFileName = "testcat5.jpg"
     catFileName2 = "testcat2.jpg"
-    catbounds = detectCatFace(catFileName)
-    catbounds2 = detectCatFace(catFileName2)
-    swap(catFileName,catFileName2,catbounds,catbounds2)
-    print catbounds
-    # Read images
-    filename3 = 'ted_cruz.jpg'
-    catbounds2 = detectCatFace(filename3)
-    print catbounds2
     filename1 = 'testcat.jpg'
     filename2 = 'donald_trump.jpg'
+    filename3 = 'ted_cruz.jpg'
+    todd = 'todd.jpg'
     
-    img1 = cv2.imread(filename1);
-    img2 = cv2.imread(filename2);
-    img3 = cv2.imread(filename3);
-    img1Warped = np.copy(img2);    
-    
-    # Read array of corresponding points
-    points1 = readPoints(filename3 + '.txt')
-    points2 = readPoints(filename2 + '.txt')    
-    
-    # Find convex hull
-    hull1 = []
-    hull2 = []
-
-    hullIndex = cv2.convexHull(np.array(points2), returnPoints = False)
-          
-    for i in xrange(0, len(hullIndex)):
-        hull1.append(points1[hullIndex[i]])
-        hull2.append(points2[hullIndex[i]])
-    
-    
-    # Find delanauy traingulation for convex hull points
-    sizeImg2 = img2.shape    
-    rect = (0, 0, sizeImg2[1], sizeImg2[0])
-     
-    dt = calculateDelaunayTriangles(rect, hull2)
-    
-    if len(dt) == 0:
-        quit()
-    
-    # Apply affine transformation to Delaunay triangles
-    for i in xrange(0, len(dt)):
-        t1 = []
-        t2 = []
-        
-        #get points for img1, img2 corresponding to the triangles
-        for j in xrange(0, 3):
-            t1.append(hull1[dt[i][j]])
-            t2.append(hull2[dt[i][j]])
-        
-        warpTriangle(img1, img1Warped, t1, t2)
-    
-            
-    # Calculate Mask
-    hull8U = []
-    for i in xrange(0, len(hull2)):
-        hull8U.append((hull2[i][0], hull2[i][1]))
-    
-    mask = np.zeros(img2.shape, dtype = img2.dtype)  
-    
-    cv2.fillConvexPoly(mask, np.int32(hull8U), (255, 255, 255))
-    
-    r = cv2.boundingRect(np.float32([hull2]))    
-    
-    center = ((r[0]+int(r[2]/2), r[1]+int(r[3]/2)))
-     
-    
-    # Clone seamlessly.
-    output = cv2.seamlessClone(np.uint8(img1Warped), img2, mask, center, cv2.NORMAL_CLONE)
-    
-    cv2.imshow("Facee Swapped", output)
-    detectCatFace("testcat5.jpg")
+    catbounds = detectCatFace(catFileName)
+    todbounds = detectHumanFaceRect(todd)
+    humanbounds = detectHumanFaceRect(filename3)
+    swap(catFileName,filename3,catbounds,humanbounds)
+    swap(todd,catFileName,todbounds,catbounds)
+    swap(catFileName,todd,catbounds,todbounds)
+    print catbounds
+    print humanbounds
     #swap(filename3,filename1,filename2)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
