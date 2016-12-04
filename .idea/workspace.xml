@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="683ff5d7-adbd-469d-acfe-337e22de30d8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FaceSwap/faceSwap.py" afterPath="$PROJECT_DIR$/FaceSwap/faceSwap.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,7 +14,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/catFaceSwapSendToTodd$Window.coverage" NAME="Window Coverage Results" MODIFIED="1480819744961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FaceSwap" />
     <SUITE FILE_PATH="coverage/catFaceSwapSendToTodd$client.coverage" NAME="client Coverage Results" MODIFIED="1480805313455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ClarifaiLibraries/clarifai/client" />
-    <SUITE FILE_PATH="coverage/catFaceSwapSendToTodd$faceSwap.coverage" NAME="faceSwap Coverage Results" MODIFIED="1480819772000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FaceSwap" />
+    <SUITE FILE_PATH="coverage/catFaceSwapSendToTodd$faceSwap.coverage" NAME="faceSwap Coverage Results" MODIFIED="1480820268058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FaceSwap" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -25,8 +25,8 @@
       <file leaf-file-name="faceSwap.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FaceSwap/faceSwap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="38" column="4" lean-forward="true" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
+            <state relative-caret-position="352">
+              <caret line="276" column="27" lean-forward="true" selection-start-line="276" selection-start-column="27" selection-end-line="276" selection-end-column="27" />
               <folding>
                 <element signature="e#24#34#0" expanded="true" />
               </folding>
@@ -710,8 +710,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FaceSwap/faceSwap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="38" column="4" lean-forward="true" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
+        <state relative-caret-position="352">
+          <caret line="276" column="27" lean-forward="true" selection-start-line="276" selection-start-column="27" selection-end-line="276" selection-end-column="27" />
           <folding>
             <element signature="e#24#34#0" expanded="true" />
           </folding>
