@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="683ff5d7-adbd-469d-acfe-337e22de30d8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FaceSwap/Window.py" afterPath="$PROJECT_DIR$/FaceSwap/Window.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FaceSwap/faceSwap.py" afterPath="$PROJECT_DIR$/FaceSwap/faceSwap.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,8 +25,8 @@
       <file leaf-file-name="faceSwap.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FaceSwap/faceSwap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="194" column="11" lean-forward="false" selection-start-line="194" selection-start-column="3" selection-end-line="194" selection-end-column="11" />
+            <state relative-caret-position="1125">
+              <caret line="251" column="11" lean-forward="false" selection-start-line="251" selection-start-column="11" selection-end-line="251" selection-end-column="11" />
               <folding>
                 <element signature="e#24#34#0" expanded="true" />
               </folding>
@@ -39,8 +37,8 @@
       <file leaf-file-name="Window.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FaceSwap/Window.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+            <state relative-caret-position="357">
+              <caret line="21" column="41" lean-forward="false" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -697,8 +695,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FaceSwap/faceSwap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="194" column="11" lean-forward="false" selection-start-line="194" selection-start-column="3" selection-end-line="194" selection-end-column="11" />
+        <state relative-caret-position="1125">
+          <caret line="251" column="11" lean-forward="false" selection-start-line="251" selection-start-column="11" selection-end-line="251" selection-end-column="11" />
           <folding>
             <element signature="e#24#34#0" expanded="true" />
           </folding>
@@ -707,8 +705,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FaceSwap/Window.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        <state relative-caret-position="357">
+          <caret line="21" column="41" lean-forward="false" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
