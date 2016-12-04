@@ -9,21 +9,31 @@ def detectCatFace(imgPath):
     # load the input image and convert it to grayscale
     image =  cv2.imread(imgPath)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-     
+ 
     # load the cat detector Haar cascade, then detect cat faces
     # in the input image
     detector = cv2.CascadeClassifier("frontcat_extended.xml")
     rects = detector.detectMultiScale(gray, scaleFactor=1.3,
     	minNeighbors=1, minSize=(5, 5))
     # loop over the cat faces and draw a rectangle surrounding each
+    aList = []
     for (i, (x, y, w, h)) in enumerate(rects):
-    	cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
-    	cv2.putText(image, "Cat #{}".format(i + 1), (x, y - 10),
+        #temp = x +","+ y +","+ w + "," + h 
+        aList.append((x,y))
+        aList.append((x,y+h))
+        aList.append((x+w,y))
+        aList.append((x+w,y+h))
+        print x   #x point
+        print y     #y point
+        print h     #height form origin
+        print w     #width from origin
+        cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
+        cv2.putText(image, "Cat #{}".format(i + 1), (x, y - 10),
     		cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 0, 255), 2)
-    
-     
+    print aList
     # show the detected cat faces
     cv2.imshow("Cat Faces", image)
+    return aList
  
 # Read points from text file
 def readPoints(path) :
@@ -289,5 +299,4 @@ if __name__ == '__main__' :
     detectCatFace("testcat5.jpg")
     #swap(filename3,filename1,filename2)
     cv2.waitKey(0)
-    
     cv2.destroyAllWindows()
