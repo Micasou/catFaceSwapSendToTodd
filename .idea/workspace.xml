@@ -10,7 +10,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/catFaceSwapSendToTodd$Window.coverage" NAME="Window Coverage Results" MODIFIED="1480818158601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FaceSwap" />
+    <SUITE FILE_PATH="coverage/catFaceSwapSendToTodd$Window.coverage" NAME="Window Coverage Results" MODIFIED="1480818468171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FaceSwap" />
     <SUITE FILE_PATH="coverage/catFaceSwapSendToTodd$client.coverage" NAME="client Coverage Results" MODIFIED="1480805313455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ClarifaiLibraries/clarifai/client" />
     <SUITE FILE_PATH="coverage/catFaceSwapSendToTodd$faceSwap.coverage" NAME="faceSwap Coverage Results" MODIFIED="1480807256543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FaceSwap" />
   </component>
@@ -35,8 +35,8 @@
       <file leaf-file-name="Window.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FaceSwap/Window.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="10" column="70" lean-forward="true" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="70" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -703,8 +703,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FaceSwap/Window.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="10" column="70" lean-forward="true" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="70" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
